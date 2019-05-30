@@ -36,7 +36,7 @@ const scrapingRequest = (page) => {
       }
   };
   // mock
-  parseData(fs.readFileSync('./mock/ideal.html'));
+  // parseData(fs.readFileSync('./mock/ideal.html'));
   
   rp(requestOptions).then((data) => {
     parseData(data);
@@ -64,9 +64,14 @@ const setHouseSummary = async(data, idHouse) => {
   const $ = cheerio.load(data);
   const dataHouse = {};
   
+  let price = $('.item-info-container .price-row .item-price').text();
+  price = price.split('€')[0];
+  price = price.replace('.', '');
+  
   dataHouse.idSource = idHouse;
   dataHouse.origin = 'idealista';
   dataHouse.title = $('.item-info-container .item-link').text();
+  dataHouse.price = parseFloat(price);
   dataHouse.images = [];
   dataHouse.images.push({
     url: $('.item-gallery img').attr('data-ondemand-img')

@@ -10,6 +10,7 @@ const HouseSchema = new mongoose.Schema({
   },
   updatedAt: Date,
   title: String,
+  price: Number,
   contact: {
     phone: String,
   },
