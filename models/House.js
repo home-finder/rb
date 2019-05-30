@@ -10,6 +10,9 @@ const HouseSchema = new mongoose.Schema({
   },
   updatedAt: Date,
   title: String,
+  contact: {
+    phone: String,
+  },
   images: [ImageSchema]
 });
 
